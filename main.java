@@ -32,9 +32,12 @@ public class main {
         }
         ScanWord sw = new ScanWord(src_code);
         String res = sw.getSym();
-        while(res != ""){
+        while(res != "" && !res.equals("Unknown")){
             System.out.println(res);
             res = sw.getSym();
+        }
+        if(res.equals("Unknown")){
+            System.out.println(res);
         }
     }
 }
