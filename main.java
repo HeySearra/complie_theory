@@ -30,7 +30,6 @@ public class main {
             System.out.println("error!");
             return;
         }
-        System.out.println(src_code);
         ScanWord sw = new ScanWord(src_code);
         String res = sw.getSym();
         while(res != ""){
