@@ -257,7 +257,7 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseStatementSequence() throws CompileError {
-        while (peek().getTokenType() != TokenType.EOF){
+        while (peek().getTokenType() != TokenType.End){
             analyseStatement();
         }
     }
@@ -339,7 +339,17 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseItem() throws CompileError {
-        throw new Error("Not implemented");
+        analyseFactor();
+        while(check(TokenType.Mult) || check(TokenType.Div)){
+            if (check(TokenType.Mult)) {
+                expect(TokenType.Mult);
+                analyseFactor();
+            }
+            else{
+                expect(TokenType.Div);
+                analyseFactor();
+            }
+        }
     }
 
     /**
@@ -376,6 +386,5 @@ public final class Analyser {
         if (negate) {
             instructions.add(new Instruction(Operation.SUB));
         }
-        throw new Error("Not implemented");
     }
 }
