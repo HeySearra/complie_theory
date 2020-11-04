@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class main {
     private static String readFileContent(String fileName) throws IOException {
@@ -11,25 +10,22 @@ public class main {
         String content = "";
         StringBuilder sb = new StringBuilder();
         content = bf.readLine();
+        sb.append(content.trim());
         bf.close();
         return sb.toString();
     }
 
     public static void main(String[] args) {
         String src_code = "";
-        Scanner scan = new Scanner(System.in);
         priority pri = new priority();
-        if (scan.hasNextLine()) {
-            try{
-                src_code = readFileContent(args[0]);
-            }
-            catch(IOException e){
-                System.out.println("error!");
-                return;
-            }
-            // src_code = scan.nextLine();
-            src_code = src_code + '#';
+        try{
+            src_code = readFileContent(args[0]);
         }
+        catch(IOException e){
+            System.out.println("error!");
+            return;
+        }
+        src_code = src_code + '#';
         int i = 0;
         while(i < src_code.length()){
             int flag = pri.priority_cmp(src_code.charAt(i));
